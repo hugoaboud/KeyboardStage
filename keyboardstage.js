@@ -351,6 +351,37 @@ function onDocumentKeyDown(event) {
 	
 };
 
+document.addEventListener("keydown", onDocumentKeyDown, false);
+function onDocumentKeyDown(event) {
+    var keyCode = event.which;
+	// -/+ (speed)
+	if (keyCode == 189) Time.bpm -= 5;
+	else if (keyCode == 187) Time.bpm += 5;
+	// A/S/D/F/G/H (dimmer presets)
+	else if (keyCode == 65) DimmerPreset.Set(0);
+	else if (keyCode == 83) DimmerPreset.Set(1);
+	else if (keyCode == 68) DimmerPreset.Set(2);
+	else if (keyCode == 70) DimmerPreset.Set(3);
+	else if (keyCode == 71) DimmerPreset.Set(4);
+	else if (keyCode == 72) DimmerPreset.Set(5);
+	// 1~6 (color presets)
+    else if (keyCode >= 49 && keyCode <= 54) ColorPreset.Set(keyCode-49);
+	// 9/0 (zoom)
+	else if (keyCode == 57) for(var i = 0; i < 19; i++) spots[i].zoom -= 0.004;
+	else if (keyCode == 48) for(var i = 0; i < 19; i++) spots[i].zoom += 0.004;
+	// Q/W/E/R/T (pantilt presets)
+	else if (keyCode == 81) PTPreset.Set(0, true);
+	else if (keyCode == 87) PTPreset.Set(1, true);
+	else if (keyCode == 69) PTPreset.Set(2, true);
+	else if (keyCode == 82) PTPreset.Set(3, true);
+	else if (keyCode == 84) PTPreset.Set(4, true);
+	
+};
+
+/**
+*	LOOP
+*/
+
 function update() {
 	
 	//console.log(Time.Get());
